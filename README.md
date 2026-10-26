@@ -1,5 +1,16 @@
 # fris —— 期货盯盘工作台
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
+
+```bash
+git clone https://github.com/wlddhj/fris.git && cd fris
+pip install -r requirements.txt
+cp workbench/config.example.json workbench/config.json
+printf 'TQ_AUTH_USER=你的快期账号\nTQ_AUTH_PASS=你的密码\n' > workbench/.tqenv
+python3 workbench/server.py        # 打开 http://localhost:8000
+```
+
 期货产业链实时盯盘与信号系统：快期行情（WebSocket 推送）+ 多源现货/产业数据（卓创、隆众、Mysteel、生意社、布瑞克）+ 15 条产业信号自动判定 + SQLite 历史落档。
 
 > **定位**：这是一个「自己用的盯盘台」，不是交易信号服务。它把散落在各处的行情、持仓、现货、库存拼到一块屏上，把判定规则写成人能读的标签，让你少算几步。所有结论都只是数据整理，**不构成投资建议**。

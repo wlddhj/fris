@@ -1,6 +1,6 @@
 [Unit]
 Description=fris futures monitoring workbench
-Documentation=https://github.com/<your-github>/fris
+Documentation=https://github.com/wlddhj/fris
 After=network-online.target
 Wants=network-online.target
 

@@ -1,0 +1,35 @@
+# 凭证与隐私 —— 永不入库
+workbench/config.json
+workbench/.tqenv
+nohup.out
+
+# 运行时库不入库；但定时备份快照（workbench/backups/archive-*.db）要入库
+*.db
+*.db-shm
+*.db-wal
+!workbench/backups/archive-*.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node / 探针产物
+node_modules/
+workbench/lz_probe/
+workbench/zc_probe/
+*.png
+
+# 运行时数据缓存（抓取器落盘的快照）
+workbench/longzhong.json
+workbench/mysteel.json
+workbench/sci99.json
+workbench/sinograin.json
+workbench/spot.json
+
+# 配置与数据备份
+workbench/playbook.json.*
+workbench/*.bak
+
+# 系统
+.DS_Store

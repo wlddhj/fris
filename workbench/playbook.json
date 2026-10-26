@@ -1,0 +1,425 @@
+{
+ "_comment": "品种剧本配置。结构参考同类型期货监控台 2026-10 的公开页面整理，价位/条件为示例值，需按自己的品种与周期用 levels.py 重新生成。levels 单位与合约报价一致。",
+ "confirmBars": 3,
+ "nearPct": 0.01,
+ "playbooks": [
+  {
+   "id": "JD",
+   "code": "JD2612",
+   "name": "鸡蛋",
+   "exchange": "DCE",
+   "contractUnit": 5,
+   "yuanPerPoint": 10,
+   "nightSession": false,
+   "atr": 87,
+   "basisNote": "主产区现货约3.80-3.89元/斤，深贴水、现货未确认止跌",
+   "levels": {
+    "resistance": 3851,
+    "firstSupport": 3266,
+    "strongSupport": 3235,
+    "stopTarget": 3191,
+    "longTriggerBreak": 3394,
+    "longPullback": 3235,
+    "shortBreakdown": 3235,
+    "shortFadeZone": [
+     3394,
+     3481
+    ]
+   },
+   "plan": {
+    "entry": 3394,
+    "stop": 3438,
+    "waveTarget": 3148,
+    "trendTarget": 3061
+   },
+   "thesis": "空头排列（价3302＜MA5 3394＜MA20 3658），顺势做空不抄底；反弹 3394-3481 滞涨试空，站上 MA20(3658) 趋势证伪必须离场，下方看 3148",
+   "industrySignals": [
+    {
+     "id": "jd1",
+     "name": "现货止跌",
+     "desc": "全国主产区鸡蛋均价连续3日不创新低",
+     "triggerCondition": "卓创《全国蛋鸡日度简报》主产区鸡蛋均价（元/斤），最近 3 个观测日逐一不低于各自前低；生意社基准价兜底",
+     "dataSource": "卓创资讯·蛋鸡日度简报（自动）"
+    },
+    {
+     "id": "jd2",
+     "name": "淘鸡放量",
+     "desc": "周度淘鸡量环比放量",
+     "triggerCondition": "全国代表市场老母鸡出栏量环比增加（卓创每周四发）",
+     "dataSource": "卓创·老母鸡出栏量 周数据（自动）"
+    },
+    {
+     "id": "jd3",
+     "name": "缩量企稳",
+     "desc": "放量下跌后缩量+持仓回落",
+     "triggerCondition": "放量下跌后成交量萎缩+持仓量下降",
+     "dataSource": "TqSdk·日线量仓（自动）"
+    }
+   ],
+   "product": "jd",
+   "pointValue": 10,
+   "priceMult": 2,
+   "spec": "5吨/手 · 报价元/500kg",
+   "advice": {
+    "direction": "空头趋势",
+    "shortStop": 3394,
+    "swingStop": 3658,
+    "swingTarget": 3148,
+    "trendTarget": 3061,
+    "holdCondition": "收盘未站上 MA5(3394) 则空头结构完好，可持有看 3148；站上 MA20(3658) 必须离场"
+   },
+   "pctile": {
+    "pct": 20.0,
+    "lo": 2770,
+    "hi": 4913,
+    "years": 5.3
+   },
+   "techNote": "收盘 3302 · MA5 3394 MA20 3658 · ATR14 87 · 趋势 空头趋势 · 历史分位 20%（近 5.3 年）",
+   "levelsAsOf": "2026-10-19",
+   "mainSymbol": "DCE.jd2612"
+  },
+  {
+   "id": "L",
+   "code": "L2701",
+   "name": "塑料",
+   "exchange": "DCE",
+   "contractUnit": 5,
+   "yuanPerPoint": 5,
+   "nightSession": true,
+   "atr": 222,
+   "basisNote": "LLDPE现货约9988元/吨，深贴水支撑；油价成本是最大变量",
+   "levels": {
+    "resistance": 9136,
+    "firstSupport": 8011,
+    "strongSupport": 7900,
+    "stopTarget": 7789,
+    "longTriggerBreak": 9136,
+    "longPullback": 8078,
+    "shortBreakdown": 8011,
+    "shortFadeZone": [
+     9069,
+     9136
+    ]
+   },
+   "plan": null,
+   "thesis": "区间震荡 7900-9136（现价 8612 居中），高抛低吸为主；放量突破 9136 转多、跌破 7900 转空，突破前不加仓",
+   "industrySignals": [
+    {
+     "id": "l1",
+     "name": "供应收缩",
+     "desc": "PE开工率降至75%以下",
+     "triggerCondition": "PE产能利用率<75%（隆众周数据，每周四发）",
+     "dataSource": "隆众·PE产能利用率（自动）"
+    },
+    {
+     "id": "l2",
+     "name": "库存去化",
+     "desc": "两油库存连续两期下降",
+     "triggerCondition": "两油（重点生产企业聚烯烃）库存连续两期环比下降（日数据）",
+     "dataSource": "隆众·两油库存 日数据（自动）"
+    },
+    {
+     "id": "l3",
+     "name": "成本抬升",
+     "desc": "油价突破前高",
+     "triggerCondition": "SC原油突破近期高点",
+     "dataSource": "TqSdk·INE.sc 主连（自动）"
+    }
+   ],
+   "product": "l",
+   "pointValue": 5,
+   "priceMult": 1,
+   "spec": "5吨/手 · 报价元/吨",
+   "advice": {
+    "direction": "区间震荡",
+    "shortStop": 7900,
+    "swingStop": 7789,
+    "swingTarget": 9136,
+    "trendTarget": null,
+    "holdCondition": "区间 8011-9136，高抛低吸为主，突破区间再切换趋势模式"
+   },
+   "pctile": {
+    "pct": 86.2,
+    "lo": 6240,
+    "hi": 10000,
+    "years": 5.3
+   },
+   "techNote": "收盘 8612 · MA5 8776 MA20 8509 · ATR14 222 · 趋势 区间震荡 · 历史分位 86%（近 5.3 年）",
+   "levelsAsOf": "2026-10-19",
+   "mainSymbol": "DCE.l2701"
+  },
+  {
+   "id": "PP",
+   "code": "PP2701",
+   "name": "聚丙烯",
+   "exchange": "DCE",
+   "contractUnit": 5,
+   "yuanPerPoint": 5,
+   "nightSession": true,
+   "atr": 254,
+   "basisNote": "拉丝现货约10657元/吨，深贴水；商业库存环比累库压制",
+   "levels": {
+    "resistance": 9672,
+    "firstSupport": 8314,
+    "strongSupport": 8187,
+    "stopTarget": 8060,
+    "longTriggerBreak": 9672,
+    "longPullback": 8390,
+    "shortBreakdown": 8314,
+    "shortFadeZone": [
+     9596,
+     9672
+    ]
+   },
+   "plan": null,
+   "thesis": "区间震荡 8187-9672（现价 9320 居中），高抛低吸为主；放量突破 9672 转多、跌破 8187 转空，突破前不加仓",
+   "industrySignals": [
+    {
+     "id": "pp1",
+     "name": "库存去化",
+     "desc": "生产企业库存连续两期下降",
+     "triggerCondition": "PP生产企业库存连续两期环比下降（周数据）",
+     "dataSource": "隆众·PP生产企业库存 周数据（自动）"
+    },
+    {
+     "id": "pp2",
+     "name": "开工回升",
+     "desc": "下游开工率回到35%以上",
+     "triggerCondition": "塑编/注塑/BOPP 开工率均>35%（隆众周数据）",
+     "dataSource": "隆众·PP下游开工 周数据（自动）"
+    },
+    {
+     "id": "pp3",
+     "name": "成本支撑",
+     "desc": "布伦特站上100美元且站上20日均线",
+     "triggerCondition": "布伦特>100美元/桶 且 站上20日均线",
+     "dataSource": "新浪外盘·布伦特（自动）"
+    }
+   ],
+   "product": "pp",
+   "pointValue": 5,
+   "priceMult": 1,
+   "spec": "5吨/手 · 报价元/吨",
+   "advice": {
+    "direction": "区间震荡",
+    "shortStop": 8187,
+    "swingStop": 8060,
+    "swingTarget": 9672,
+    "trendTarget": null,
+    "holdCondition": "区间 8314-9672，高抛低吸为主，突破区间再切换趋势模式"
+   },
+   "pctile": {
+    "pct": 98.0,
+    "lo": 6119,
+    "hi": 10301,
+    "years": 5.3
+   },
+   "techNote": "收盘 9320 · MA5 9380 MA20 8955 · ATR14 254 · 趋势 区间震荡 · 历史分位 98%（近 5.3 年）",
+   "levelsAsOf": "2026-10-19",
+   "mainSymbol": "DCE.pp2701"
+  },
+  {
+   "id": "M",
+   "code": "M2701",
+   "name": "豆粕",
+   "exchange": "DCE",
+   "contractUnit": 10,
+   "yuanPerPoint": 10,
+   "nightSession": true,
+   "atr": 46,
+   "basisNote": "沿海现货约3360元/吨，基差极小无保护；丰产+高库存偏空",
+   "levels": {
+    "resistance": 3502,
+    "firstSupport": 3276,
+    "strongSupport": 3260,
+    "stopTarget": 3237,
+    "longTriggerBreak": 3324,
+    "longPullback": 3260,
+    "shortBreakdown": 3260,
+    "shortFadeZone": [
+     3324,
+     3370
+    ]
+   },
+   "plan": {
+    "entry": 3324,
+    "stop": 3347,
+    "waveTarget": 3214,
+    "trendTarget": 3168
+   },
+   "thesis": "空头排列（价3287＜MA5 3324＜MA20 3380），顺势做空不抄底；反弹 3324-3370 滞涨试空，站上 MA20(3380) 趋势证伪必须离场，下方看 3214",
+   "industrySignals": [
+    {
+     "id": "m1",
+     "name": "库存去化",
+     "desc": "豆粕库存降至100万吨以下",
+     "triggerCondition": "全国主要油厂豆粕库存<100万吨（Mysteel 每周一发）",
+     "dataSource": "我的农产品·豆粕库存 周数据（自动）"
+    },
+    {
+     "id": "m2",
+     "name": "压榨利润",
+     "desc": "油厂盘面压榨利润（已扣加工费）",
+     "triggerCondition": "盘面净利 >0：豆粕×0.785 + 豆油×0.185 − 豆二 − 150 元/吨（成本腿用大商所豆二＝进口大豆，免汇率/升贴水假设）",
+     "dataSource": "盘面自算·豆粕M/豆油Y/豆二B（自动）"
+    },
+    {
+     "id": "m3",
+     "name": "美豆反弹",
+     "desc": "美豆上破20日高",
+     "triggerCondition": "美豆上破前20日高（1000美分关口已钝化）",
+     "dataSource": "新浪外盘·CBOT大豆（自动）"
+    }
+   ],
+   "product": "m",
+   "pointValue": 10,
+   "priceMult": 1,
+   "spec": "10吨/手 · 报价元/吨",
+   "advice": {
+    "direction": "空头趋势",
+    "shortStop": 3324,
+    "swingStop": 3380,
+    "swingTarget": 3214,
+    "trendTarget": 3168,
+    "holdCondition": "收盘未站上 MA5(3324) 则空头结构完好，可持有看 3214；站上 MA20(3380) 必须离场"
+   },
+   "pctile": {
+    "pct": 49.7,
+    "lo": 2567,
+    "hi": 4488,
+    "years": 5.3
+   },
+   "techNote": "收盘 3287 · MA5 3324 MA20 3380 · ATR14 46 · 趋势 空头趋势 · 历史分位 50%（近 5.3 年）",
+   "levelsAsOf": "2026-10-19",
+   "mainSymbol": "DCE.m2701"
+  },
+  {
+   "id": "C",
+   "code": "C2701",
+   "name": "玉米",
+   "exchange": "DCE",
+   "contractUnit": 10,
+   "yuanPerPoint": 10,
+   "nightSession": true,
+   "atr": 21,
+   "basisNote": "锦州新粮约2150元/吨，期货升水含收储预期；新粮上市压制",
+   "levels": {
+    "resistance": 2283,
+    "firstSupport": 2179,
+    "strongSupport": 2172,
+    "stopTarget": 2162,
+    "longTriggerBreak": 2208,
+    "longPullback": 2172,
+    "shortBreakdown": 2172,
+    "shortFadeZone": [
+     2208,
+     2229
+    ]
+   },
+   "plan": {
+    "entry": 2208,
+    "stop": 2218,
+    "waveTarget": 2151,
+    "trendTarget": 2130
+   },
+   "thesis": "空头排列（价2183＜MA5 2208＜MA20 2214），顺势做空不抄底；反弹 2208-2229 滞涨试空，站上 MA20(2214) 趋势证伪必须离场，下方看 2151",
+   "industrySignals": [
+    {
+     "id": "c1",
+     "name": "收储启动",
+     "desc": "中储粮玉米竞价采购放量（单场≥5万吨 或 三日≥15万吨）",
+     "triggerCondition": "中储粮玉米竞价采购单场计划≥5万吨，或今日起三日内计划合计≥15万吨",
+     "dataSource": "中储粮网·竞价公告/结果（自动）"
+    },
+    {
+     "id": "c2",
+     "name": "售粮进度",
+     "desc": "基层售粮进度过半（卖压释放程度）",
+     "triggerCondition": "东北+华北两区平均售粮进度 >50%；卓创随收购季更新，新季首期一般 11 月发布",
+     "dataSource": "卓创资讯·玉米基层售粮进度（自动）"
+    },
+    {
+     "id": "c3",
+     "name": "加工利润",
+     "desc": "玉米淀粉加工利润（淀粉-玉米价差代理）",
+     "triggerCondition": "淀粉-玉米价差 高于近 120 日中位＝加工利润好于常态（副产品价无公开源，不做利润绝对值）",
+     "dataSource": "盘面自算·玉米淀粉CS/玉米C（自动）"
+    }
+   ],
+   "product": "c",
+   "pointValue": 10,
+   "priceMult": 1,
+   "spec": "10吨/手 · 报价元/吨",
+   "advice": {
+    "direction": "空头趋势",
+    "shortStop": 2208,
+    "swingStop": 2214,
+    "swingTarget": 2151,
+    "trendTarget": 2130,
+    "holdCondition": "收盘未站上 MA5(2208) 则空头结构完好，可持有看 2151；站上 MA20(2214) 必须离场"
+   },
+   "pctile": {
+    "pct": 6.2,
+    "lo": 2084,
+    "hi": 3044,
+    "years": 5.3
+   },
+   "techNote": "收盘 2183 · MA5 2208 MA20 2214 · ATR14 21 · 趋势 空头趋势 · 历史分位 6%（近 5.3 年）",
+   "levelsAsOf": "2026-10-19",
+   "mainSymbol": "DCE.c2701"
+  }
+ ],
+ "_meta": {
+  "JD": {
+   "asof": "2026-10-19",
+   "last": 3302.0,
+   "ma5": 3393.6,
+   "ma20": 3657.8,
+   "atr": 87.2,
+   "bias": "bear",
+   "high20": 3851,
+   "low20": 3235
+  },
+  "L": {
+   "asof": "2026-10-19",
+   "last": 8612.0,
+   "ma5": 8775.6,
+   "ma20": 8509.2,
+   "atr": 222.0,
+   "bias": "range",
+   "high20": 9136,
+   "low20": 8011
+  },
+  "PP": {
+   "asof": "2026-10-19",
+   "last": 9320.0,
+   "ma5": 9379.8,
+   "ma20": 8954.7,
+   "atr": 253.9,
+   "bias": "range",
+   "high20": 9672,
+   "low20": 8314
+  },
+  "M": {
+   "asof": "2026-10-19",
+   "last": 3287.0,
+   "ma5": 3323.6,
+   "ma20": 3379.7,
+   "atr": 45.9,
+   "bias": "bear",
+   "high20": 3502,
+   "low20": 3260
+  },
+  "C": {
+   "asof": "2026-10-19",
+   "last": 2183.0,
+   "ma5": 2208.0,
+   "ma20": 2213.9,
+   "atr": 20.9,
+   "bias": "bear",
+   "high20": 2283,
+   "low20": 2172
+  },
+  "computedAt": "2026-10-20 11:11"
+ }
+}

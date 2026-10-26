@@ -1,0 +1,302 @@
+{
+ "_comment": "品种剧本配置。结构参考同类型期货监控台 2026-10 的公开页面整理，价位/条件为示例值，需按自己的品种与周期用 levels.py 重新生成。levels 单位与合约报价一致。",
+ "confirmBars": 3,
+ "nearPct": 0.01,
+ "playbooks": [
+  {
+   "id": "JD",
+   "code": "JD2612",
+   "name": "鸡蛋",
+   "exchange": "DCE",
+   "contractUnit": 5,
+   "yuanPerPoint": 10,
+   "nightSession": false,
+   "atr": 70,
+   "direction": "short",
+   "basisNote": "主产区现货约3.80-3.89元/斤，深贴水、现货未确认止跌",
+   "seasonal": "10月节后回调 · 11月全年压力最大月 · 12月春节备货启动",
+   "levels": {
+    "resistance": 3500,
+    "firstSupport": 3300,
+    "strongSupport": 3266,
+    "stopTarget": 3250,
+    "longTriggerBreak": 3500,
+    "longPullback": 3300,
+    "shortBreakdown": 3400,
+    "shortFadeZone": [
+     3500,
+     3520
+    ]
+   },
+   "plan": {
+    "entry": 3400,
+    "stop": 3520,
+    "waveTarget": 3300,
+    "trendTarget": 3250
+   },
+   "thesis": "空头排列+节后供需转弱，破3400后顺势空、禁止抄底；反弹3500-3520滞涨再试空",
+   "industrySignals": [
+    {
+     "id": "jd1",
+     "name": "现货止跌",
+     "desc": "产区均价连续3日不创新低",
+     "triggerCondition": "主产区均价连续3天不再创新低",
+     "dataSource": "卓创/每日蛋价"
+    },
+    {
+     "id": "jd2",
+     "name": "淘鸡放量",
+     "desc": "周度淘鸡量环比放量",
+     "triggerCondition": "周度淘鸡出栏量环比增加",
+     "dataSource": "卓创/钢联"
+    },
+    {
+     "id": "jd3",
+     "name": "缩量企稳",
+     "desc": "放量下跌后缩量+持仓回落",
+     "triggerCondition": "放量下跌后成交量萎缩+持仓量下降",
+     "dataSource": "期货软件"
+    }
+   ],
+   "product": "jd",
+   "pointValue": 10,
+   "priceMult": 2,
+   "spec": "5吨/手 · 报价元/500kg"
+  },
+  {
+   "id": "L",
+   "code": "L2701",
+   "name": "塑料",
+   "exchange": "DCE",
+   "contractUnit": 5,
+   "yuanPerPoint": 5,
+   "nightSession": true,
+   "atr": 212,
+   "direction": "long",
+   "basisNote": "LLDPE现货约9988元/吨，深贴水支撑；油价成本是最大变量",
+   "seasonal": "农膜秋旺延续 · 11月棚膜旺季 · 12月产量峰值",
+   "levels": {
+    "resistance": 9136,
+    "firstSupport": 8750,
+    "strongSupport": 8221,
+    "stopTarget": 8500,
+    "longTriggerBreak": 9136,
+    "longPullback": 8580,
+    "shortBreakdown": 8221,
+    "shortFadeZone": [
+     9136,
+     9200
+    ]
+   },
+   "plan": {
+    "entry": 8580,
+    "stop": 8221,
+    "waveTarget": 9136,
+    "trendTarget": 9200
+   },
+   "thesis": "周线多头未破坏属回踩性质；8750得失定方向，回踩8580企稳或放量破9136再动手",
+   "industrySignals": [
+    {
+     "id": "l1",
+     "name": "供应收缩",
+     "desc": "PE开工率降至75%以下",
+     "triggerCondition": "PE产能利用率<75%",
+     "dataSource": "隆众/卓创"
+    },
+    {
+     "id": "l2",
+     "name": "库存去化",
+     "desc": "两油库存连续下降",
+     "triggerCondition": "两油库存连续2周环比下降",
+     "dataSource": "隆众/两油"
+    },
+    {
+     "id": "l3",
+     "name": "成本抬升",
+     "desc": "油价突破前高",
+     "triggerCondition": "SC原油突破近期高点",
+     "dataSource": "新浪/文华"
+    }
+   ],
+   "product": "l",
+   "pointValue": 5,
+   "priceMult": 1,
+   "spec": "5吨/手 · 报价元/吨"
+  },
+  {
+   "id": "PP",
+   "code": "PP2701",
+   "name": "聚丙烯",
+   "exchange": "DCE",
+   "contractUnit": 5,
+   "yuanPerPoint": 5,
+   "nightSession": true,
+   "atr": 241,
+   "direction": "short",
+   "basisNote": "拉丝现货约10657元/吨，深贴水；商业库存环比累库压制",
+   "seasonal": "金九银十旺季尾声 · 11月转淡",
+   "levels": {
+    "resistance": 9672,
+    "firstSupport": 9150,
+    "strongSupport": 9000,
+    "stopTarget": 8900,
+    "longTriggerBreak": 9672,
+    "longPullback": 9150,
+    "shortBreakdown": 9000,
+    "shortFadeZone": [
+     9565,
+     9672
+    ]
+   },
+   "plan": {
+    "entry": 9000,
+    "stop": 9565,
+    "waveTarget": 9150,
+    "trendTarget": 8900
+   },
+   "thesis": "高位整理+累库利空，回踩9150企稳是关键；跌破9000且放量转空",
+   "industrySignals": [
+    {
+     "id": "pp1",
+     "name": "库存去化",
+     "desc": "商业库存连续2周下降",
+     "triggerCondition": "PP商业库存连续2周环比下降",
+     "dataSource": "隆众/卓创"
+    },
+    {
+     "id": "pp2",
+     "name": "开工回升",
+     "desc": "下游开工率回升至35%以上",
+     "triggerCondition": "塑编/BOPP/注塑开工率>35%",
+     "dataSource": "隆众/卓创"
+    },
+    {
+     "id": "pp3",
+     "name": "成本支撑",
+     "desc": "油价站稳100美元上方",
+     "triggerCondition": "布伦特原油>100美元/桶",
+     "dataSource": "新浪/文华"
+    }
+   ],
+   "product": "pp",
+   "pointValue": 5,
+   "priceMult": 1,
+   "spec": "5吨/手 · 报价元/吨"
+  },
+  {
+   "id": "M",
+   "code": "M2701",
+   "name": "豆粕",
+   "exchange": "DCE",
+   "contractUnit": 10,
+   "yuanPerPoint": 10,
+   "nightSession": true,
+   "atr": 47,
+   "direction": "short",
+   "basisNote": "沿海现货约3360元/吨，基差极小无保护；丰产+高库存偏空",
+   "seasonal": "丰产落地 · 11月压榨旺季",
+   "levels": {
+    "resistance": 3396,
+    "firstSupport": 3283,
+    "strongSupport": 3250,
+    "stopTarget": 3200,
+    "longTriggerBreak": 3396,
+    "longPullback": 3283,
+    "shortBreakdown": 3283,
+    "shortFadeZone": [
+     3380,
+     3400
+    ]
+   },
+   "plan": {
+    "entry": 3283,
+    "stop": 3380,
+    "waveTarget": 3250,
+    "trendTarget": 3200
+   },
+   "thesis": "跌破BOLL下轨，丰产落地+库存高位；破3283顺势空，反弹3380-3400滞涨试空",
+   "industrySignals": [
+    {
+     "id": "m1",
+     "name": "库存去化",
+     "desc": "豆粕库存降至100万吨以下",
+     "triggerCondition": "豆粕周度库存<100万吨",
+     "dataSource": "生意社/我的农产品"
+    },
+    {
+     "id": "m2",
+     "name": "压榨利润",
+     "desc": "油厂压榨利润转正",
+     "triggerCondition": "油厂压榨利润>0",
+     "dataSource": "行业研报"
+    },
+    {
+     "id": "m3",
+     "name": "美豆反弹",
+     "desc": "美豆突破1000美分",
+     "triggerCondition": "美豆突破1000美分",
+     "dataSource": "新浪"
+    }
+   ],
+   "product": "m",
+   "pointValue": 10,
+   "priceMult": 1,
+   "spec": "10吨/手 · 报价元/吨"
+  },
+  {
+   "id": "C",
+   "code": "C2701",
+   "name": "玉米",
+   "exchange": "DCE",
+   "contractUnit": 10,
+   "yuanPerPoint": 10,
+   "nightSession": true,
+   "atr": 30,
+   "direction": "watch",
+   "basisNote": "锦州新粮约2150元/吨，期货升水含收储预期；新粮上市压制",
+   "seasonal": "新粮上市 · 收储政策敏感期",
+   "levels": {
+    "resistance": 2249,
+    "firstSupport": 2200,
+    "strongSupport": 2171,
+    "stopTarget": 2150,
+    "longTriggerBreak": 2249,
+    "longPullback": 2200,
+    "shortBreakdown": 2200,
+    "shortFadeZone": [
+     2249,
+     2280
+    ]
+   },
+   "plan": null,
+   "thesis": "整数关口拉锯，新粮压力 vs 国储托底；守2200看2249，失守看2171，观望为主",
+   "industrySignals": [
+    {
+     "id": "c1",
+     "name": "收储启动",
+     "desc": "国储收储正式启动",
+     "triggerCondition": "中储粮发布收储公告",
+     "dataSource": "中储粮官网"
+    },
+    {
+     "id": "c2",
+     "name": "售粮进度",
+     "desc": "基层售粮进度过半",
+     "triggerCondition": "基层售粮进度超50%",
+     "dataSource": "我的农产品"
+    },
+    {
+     "id": "c3",
+     "name": "新粮压力",
+     "desc": "新粮集中上市节奏",
+     "triggerCondition": "主产区新粮上市高峰过去",
+     "dataSource": "新浪/生意社"
+    }
+   ],
+   "product": "c",
+   "pointValue": 10,
+   "priceMult": 1,
+   "spec": "10吨/手 · 报价元/吨"
+  }
+ ]
+}

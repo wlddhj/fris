@@ -1,0 +1,4 @@
+tqsdk>=3.10
+websockets>=14
+pandas>=2.0
+numpy>=1.24

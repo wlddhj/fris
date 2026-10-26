@@ -1,0 +1,20 @@
+[Unit]
+Description=fris futures monitoring workbench
+Documentation=https://github.com/<your-github>/fris
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/fris/workbench
+Environment=TZ=Asia/Shanghai
+Environment=PYTHONUNBUFFERED=1
+Environment=FRIS_BACKUP_DIR=/opt/fris/workbench/backups
+ExecStart=/opt/fris/.venv/bin/python /opt/fris/workbench/server.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/fris.log
+StandardError=append:/var/log/fris.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,30 @@
+{
+  "symbols": [
+    "JD2612",
+    "L2701",
+    "PP2701",
+    "M2701",
+    "C2701"
+  ],
+  "ws_port": 8765,
+  "http_port": 8000,
+  "push_interval_sec": 0.5,
+  "longzhong": {
+    "user": "",
+    "password": "",
+    "cookie": "",
+    "savedAt": ""
+  },
+  "sci99": {
+    "user": "",
+    "password": "",
+    "cookie": "",
+    "savedAt": ""
+  },
+  "mysteel": {
+    "user": "",
+    "password": "",
+    "cookie": "",
+    "savedAt": ""
+  }
+}
